@@ -28,10 +28,12 @@ export class AuthService {
             email: staff.email,
         });
 
+        const { password_hash: _passwordHash, ...rest } = staff;
+
         return {
             accessToken,
             refreshToken,
-            staff
+            staff: rest,
         };
     }
 }

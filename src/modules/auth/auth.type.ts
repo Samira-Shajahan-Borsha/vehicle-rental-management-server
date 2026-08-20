@@ -20,9 +20,5 @@ export interface AuthJwtPayload {
 export interface LoginResponse {
     accessToken: string;
     refreshToken: string;
-    staff: {
-        id: number;
-        name: string;
-        email: string;
-    };
+    staff: Omit<Staff, "password_hash">;
 }

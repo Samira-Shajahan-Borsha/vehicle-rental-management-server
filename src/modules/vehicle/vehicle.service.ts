@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { database } from "../../config/knex.ts";
 import AppError from "../../errorHelper/AppError.ts";
 import { deleteImageFromCloudinary } from "../../config/cloudinary.ts";
+import { QueryBuilder } from "../../utils/queryBuilder.ts";
 import {
     CreateVehiclePayload,
     CreateVehicleResponse,
@@ -10,6 +11,8 @@ import {
     UpdateVehiclePayload,
     UpdateVehicleResponse,
     Vehicle,
+    VehicleListQuery,
+    VehicleListResult,
 } from "./vehicle.type.ts";
 
 export class VehicleService {
@@ -38,6 +41,23 @@ export class VehicleService {
             .returning("*");
 
         return vehicle;
+    }
+
+    public async getAllVehicles(query: VehicleListQuery): Promise<VehicleListResult> {
+        const queryBuilder = new QueryBuilder<Vehicle>(
+            database<Vehicle>(this.vehicleTable).whereNull("deleted_at").orderBy("id", "desc"),
+            { ...query }
+        );
+
+        const [vehicles, meta] = await Promise.all([
+            queryBuilder.filter().search(["name"]).paginate().build(),
+            queryBuilder.getMeta(),
+        ]);
+
+        return {
+            vehicles,
+            meta,
+        };
     }
 
     public async getVehicleById(id: number): Promise<GetVehicleResponse> {

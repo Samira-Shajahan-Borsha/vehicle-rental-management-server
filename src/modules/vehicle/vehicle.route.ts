@@ -23,6 +23,8 @@ const cleanupUploadedPhotoOnValidationError = (req: Request): Promise<void> | vo
     }
 };
 
+router.get("/", VehicleController.getAllVehicles);
+
 router.get("/:id", VehicleController.getVehicleById);
 
 router.post(

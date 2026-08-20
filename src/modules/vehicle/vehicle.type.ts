@@ -40,6 +40,23 @@ export interface UpdateVehiclePayload {
     photo_path?: string | null;
 }
 
+export interface VehicleListQuery {
+    page?: number;
+    limit?: number;
+    category?: string;
+    search?: string;
+}
+
+export interface VehicleListResult {
+    vehicles: Vehicle[];
+    meta: {
+        page: number;
+        limit: number;
+        total: number;
+        totalPage: number;
+    };
+}
+
 export type CreateVehicleResponse = Vehicle;
 export type GetVehicleResponse = Vehicle;
 export type UpdateVehicleResponse = Vehicle;

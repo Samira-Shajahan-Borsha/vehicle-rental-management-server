@@ -1,5 +1,8 @@
 import knex, { type Knex } from "knex";
+import { types as pgTypes } from "pg";
 import { envVars } from "./env.ts";
+
+pgTypes.setTypeParser(1082, (value: string) => value);
 
 export function buildKnexConfig(): Knex.Config {
     return {

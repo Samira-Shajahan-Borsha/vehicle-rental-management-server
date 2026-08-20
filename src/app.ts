@@ -1,10 +1,17 @@
 import express, { Application, Request, Response } from "express";
-import { StatusCodes } from "http-status-codes"
+import cookieParser from "cookie-parser";
+import { StatusCodes } from "http-status-codes";
+import router from "./routes/index.ts";
+import { notFound } from "./middleware/notFound.middleware.ts";
+import { globalErrorHandler } from "./middleware/globalErrorHandler.middleware.ts";
 
 const app: Application = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.set("trust proxy", 1);
+
+app.use("/api/v1", router);
 
 app.get("/", (req: Request, res: Response) => {
     res.status(StatusCodes.OK).json({
@@ -14,5 +21,8 @@ app.get("/", (req: Request, res: Response) => {
         timeStamp: new Date().toISOString(),
     });
 });
+
+app.use(globalErrorHandler);
+app.use(notFound);
 
 export default app;

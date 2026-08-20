@@ -1,3 +1,4 @@
+import type { Knex } from "knex";
 import { StatusCodes } from "http-status-codes";
 import { database } from "../../config/knex.ts";
 import AppError from "../../errorHelper/AppError.ts";
@@ -38,38 +39,40 @@ export class RentalService {
     private readonly vehicleTable = "vehicles";
 
     public async createRental(payload: CreateRentalPayload): Promise<CreateRentalResponse> {
-        const vehicle = await database<Vehicle>(this.vehicleTable)
-            .where("id", payload.vehicle_id)
-            .whereNull("deleted_at")
-            .first();
+        return database.transaction(async (trx) => {
+            const vehicle = await trx<Vehicle>(this.vehicleTable)
+                .where("id", payload.vehicle_id)
+                .whereNull("deleted_at")
+                .first();
 
-        if (!vehicle) {
-            throw new AppError(StatusCodes.NOT_FOUND, "Vehicle not found.");
-        }
+            if (!vehicle) {
+                throw new AppError(StatusCodes.NOT_FOUND, "Vehicle not found.");
+            }
 
-        const startDate = toDateString(payload.start_date);
-        const endDate = toDateString(payload.end_date);
+            const startDate = toDateString(payload.start_date);
+            const endDate = toDateString(payload.end_date);
 
-        await this.checkVehicleAvailability(payload.vehicle_id, startDate, endDate);
+            await this.checkVehicleAvailability(trx, payload.vehicle_id, startDate, endDate);
 
-        const totalAmount = calculateTotalAmount(
-            vehicle.daily_rate,
-            new Date(startDate),
-            new Date(endDate)
-        );
+            const totalAmount = calculateTotalAmount(
+                vehicle.daily_rate,
+                new Date(startDate),
+                new Date(endDate),
+            );
 
-        const [rental] = await database<Rental>(this.rentalTable)
-            .insert({
-                vehicle_id: payload.vehicle_id,
-                customer_name: payload.customer_name,
-                customer_phone: payload.customer_phone,
-                start_date: startDate,
-                end_date: endDate,
-                total_amount: totalAmount,
-            })
-            .returning("*");
+            const [rental] = await trx<Rental>(this.rentalTable)
+                .insert({
+                    vehicle_id: payload.vehicle_id,
+                    customer_name: payload.customer_name,
+                    customer_phone: payload.customer_phone,
+                    start_date: startDate,
+                    end_date: endDate,
+                    total_amount: totalAmount,
+                })
+                .returning("*");
 
-        return rental;
+            return rental;
+        });
     }
 
     public async getAllRentals(query: RentalListQuery): Promise<RentalListResult> {
@@ -86,10 +89,7 @@ export class RentalService {
         const queryBuilder = new QueryBuilder<Rental>(baseQuery, { ...query });
 
         const [rentals, meta] = await Promise.all([
-            queryBuilder
-                .filter(["search", "page", "limit", "startDate", "endDate"])
-                .paginate()
-                .build(),
+            queryBuilder.filter(["page", "limit", "startDate", "endDate"]).paginate().build(),
             queryBuilder.getMeta(),
         ]);
 
@@ -111,78 +111,82 @@ export class RentalService {
 
     public async updateRental(
         id: number,
-        payload: UpdateRentalPayload
+        payload: UpdateRentalPayload,
     ): Promise<UpdateRentalResponse> {
-        const rental = await database<Rental>(this.rentalTable).where("id", id).first();
+        return database.transaction(async (trx) => {
+            const rental = await trx<Rental>(this.rentalTable).where("id", id).first();
 
-        if (!rental) {
-            throw new AppError(StatusCodes.NOT_FOUND, "Rental not found.");
-        }
-
-        const currentStartDate = toDateString(rental.start_date);
-        const currentEndDate = toDateString(rental.end_date);
-
-        const vehicleId = payload.vehicle_id ?? rental.vehicle_id;
-        const startDate = payload.start_date ? toDateString(payload.start_date) : currentStartDate;
-        const endDate = payload.end_date ? toDateString(payload.end_date) : currentEndDate;
-
-        const datesChanged = startDate !== currentStartDate || endDate !== currentEndDate;
-        const vehicleChanged = vehicleId !== rental.vehicle_id;
-
-        if (datesChanged || vehicleChanged) {
-            await this.checkVehicleAvailability(vehicleId, startDate, endDate, id);
-        }
-
-        const changes: Partial<Rental> = {};
-
-        if (payload.customer_name !== undefined) {
-            changes.customer_name = payload.customer_name;
-        }
-
-        if (payload.customer_phone !== undefined) {
-            changes.customer_phone = payload.customer_phone;
-        }
-
-        if (payload.status !== undefined) {
-            changes.status = payload.status;
-        }
-
-        if (vehicleChanged) {
-            changes.vehicle_id = vehicleId;
-        }
-
-        if (datesChanged) {
-            changes.start_date = startDate;
-            changes.end_date = endDate;
-        }
-
-        if (datesChanged || vehicleChanged) {
-            const vehicle = await database<Vehicle>(this.vehicleTable)
-                .where("id", vehicleId)
-                .whereNull("deleted_at")
-                .first();
-
-            if (!vehicle) {
-                throw new AppError(StatusCodes.NOT_FOUND, "Vehicle not found.");
+            if (!rental) {
+                throw new AppError(StatusCodes.NOT_FOUND, "Rental not found.");
             }
 
-            changes.total_amount = calculateTotalAmount(
-                vehicle.daily_rate,
-                new Date(startDate),
-                new Date(endDate)
-            );
-        }
+            const currentStartDate = toDateString(rental.start_date);
+            const currentEndDate = toDateString(rental.end_date);
 
-        if (Object.keys(changes).length === 0) {
-            return rental;
-        }
+            const vehicleId = payload.vehicle_id ?? rental.vehicle_id;
+            const startDate = payload.start_date
+                ? toDateString(payload.start_date)
+                : currentStartDate;
+            const endDate = payload.end_date ? toDateString(payload.end_date) : currentEndDate;
 
-        const [updated] = await database<Rental>(this.rentalTable)
-            .where("id", id)
-            .update(changes)
-            .returning("*");
+            const datesChanged = startDate !== currentStartDate || endDate !== currentEndDate;
+            const vehicleChanged = vehicleId !== rental.vehicle_id;
 
-        return updated;
+            if (datesChanged || vehicleChanged) {
+                await this.checkVehicleAvailability(trx, vehicleId, startDate, endDate, id);
+            }
+
+            const changes: Partial<Rental> = {};
+
+            if (payload.customer_name !== undefined) {
+                changes.customer_name = payload.customer_name;
+            }
+
+            if (payload.customer_phone !== undefined) {
+                changes.customer_phone = payload.customer_phone;
+            }
+
+            if (payload.status !== undefined) {
+                changes.status = payload.status;
+            }
+
+            if (vehicleChanged) {
+                changes.vehicle_id = vehicleId;
+            }
+
+            if (datesChanged) {
+                changes.start_date = startDate;
+                changes.end_date = endDate;
+            }
+
+            if (datesChanged || vehicleChanged) {
+                const vehicle = await trx<Vehicle>(this.vehicleTable)
+                    .where("id", vehicleId)
+                    .whereNull("deleted_at")
+                    .first();
+
+                if (!vehicle) {
+                    throw new AppError(StatusCodes.NOT_FOUND, "Vehicle not found.");
+                }
+
+                changes.total_amount = calculateTotalAmount(
+                    vehicle.daily_rate,
+                    new Date(startDate),
+                    new Date(endDate),
+                );
+            }
+
+            if (Object.keys(changes).length === 0) {
+                return rental;
+            }
+
+            const [updated] = await trx<Rental>(this.rentalTable)
+                .where("id", id)
+                .update(changes)
+                .returning("*");
+
+            return updated;
+        });
     }
 
     public async deleteRental(id: number): Promise<DeleteRentalResponse> {
@@ -201,12 +205,13 @@ export class RentalService {
     }
 
     private async checkVehicleAvailability(
+        trx: Knex.Transaction,
         vehicleId: number,
         startDate: string,
         endDate: string,
-        excludeRentalId?: number
+        excludeRentalId?: number,
     ): Promise<void> {
-        let query = database<Rental>(this.rentalTable)
+        let query = trx<Rental>(this.rentalTable)
             .where("vehicle_id", vehicleId)
             .whereIn("status", ACTIVE_STATUSES)
             .where("start_date", "<=", endDate)
@@ -221,7 +226,7 @@ export class RentalService {
         if (conflicting) {
             throw new AppError(
                 StatusCodes.CONFLICT,
-                `Vehicle is already rented from ${toDateString(conflicting.start_date)} to ${toDateString(conflicting.end_date)} for the requested dates.`
+                `Vehicle is already rented from ${toDateString(conflicting.start_date)} to ${toDateString(conflicting.end_date)} for the requested dates.`,
             );
         }
     }

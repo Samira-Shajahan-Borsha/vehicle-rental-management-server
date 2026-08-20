@@ -1,0 +1,1045 @@
+{
+  "info": {
+    "_postman_id": "bc37607a-4428-4ceb-94e4-5d32984b2648",
+    "name": "Vehicle Rental Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31730860"
+  },
+  "item": [
+    {
+      "name": "Vehicle",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\n  \"name\": \"Toyota Hilux\",\n  \"plate_number\": \"CTG-9012\",\n  \"category\": \"Pickup\",\n  \"daily_rate\": 8000\n}",
+                  "type": "text",
+                  "uuid": "a1bef44e-da51-40cb-8796-8bbb960b1419"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "b50ad46b-74a5-4e5d-9825-367900004ddf",
+                  "src": "/C:/Users/my-pc/Downloads/usman-malik-xlxeGeh1DY4-unsplash.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/vehicles",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "vehicles"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Vehicle",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "data",
+                      "value": "{\n  \"name\": \"Toyota Corolla Hybrid\",\n  \"plate_number\": \"DHA-2026-8841\",\n  \"category\": \"Sedan\",\n  \"daily_rate\": 2500\n}",
+                      "type": "text",
+                      "uuid": "a1bef44e-da51-40cb-8796-8bbb960b1419"
+                    },
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "b50ad46b-74a5-4e5d-9825-367900004ddf",
+                      "src": "/C:/Users/my-pc/Downloads/dhiva-krishna-X16zXcbxU4U-unsplash.jpg"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/vehicles",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "vehicles"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "460"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1cc-xx5E4MfqOHYFottnmLeEar540kU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 17:02:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 201,\n    \"success\": true,\n    \"message\": \"Vehicle created successfully\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Toyota Corolla Hybrid\",\n        \"plate_number\": \"DHA-2026-8841\",\n        \"category\": \"Sedan\",\n        \"daily_rate\": \"2500.00\",\n        \"photo_path\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1787245184/vehicle-rental-management/40corrpgoxp-1787245324649-dhiva-krishna-x16zxcbxu4u-unsplash.jpg\",\n        \"deleted_at\": null,\n        \"created_at\": \"2026-08-20T16:59:46.077Z\",\n        \"updated_at\": \"2026-08-20T16:59:46.077Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Vehicle",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "data",
+                  "value": "{\n  \"name\": \"Toyota Corolla Hybrid\",\n  \"plate_number\": \"DHA-2026-8841\",\n  \"category\": \"Sedan\",\n  \"daily_rate\": 2500\n}",
+                  "type": "text",
+                  "uuid": "a1bef44e-da51-40cb-8796-8bbb960b1419"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "b50ad46b-74a5-4e5d-9825-367900004ddf",
+                  "src": "/C:/Users/my-pc/Downloads/yuvraj-singh-tmAynVA_ihE-unsplash.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/vehicles/3",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "vehicles",
+                "3"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Vehicle",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "data",
+                      "value": "{\n  \"name\": \"Toyota Corolla Hybrid\",\n  \"plate_number\": \"DHA-2026-8841\",\n  \"category\": \"Sedan\",\n  \"daily_rate\": 2500\n}",
+                      "type": "text",
+                      "uuid": "a1bef44e-da51-40cb-8796-8bbb960b1419"
+                    },
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "b50ad46b-74a5-4e5d-9825-367900004ddf",
+                      "src": "/C:/Users/my-pc/Downloads/yuvraj-singh-tmAynVA_ihE-unsplash.jpg"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/vehicles/3",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "vehicles",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ca-Nk6HxMDy8irp+r1elCaL9iAEjvo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 17:05:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Vehicle updated successfully\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Toyota Corolla Hybrid\",\n        \"plate_number\": \"DHA-2026-8841\",\n        \"category\": \"Sedan\",\n        \"daily_rate\": \"2500.00\",\n        \"photo_path\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1787245398/vehicle-rental-management/fimuy1uap3i-1787245550933-yuvraj-singh-tmaynvaihe-unsplash.jpg\",\n        \"deleted_at\": null,\n        \"created_at\": \"2026-08-20T16:59:46.077Z\",\n        \"updated_at\": \"2026-08-20T16:59:46.077Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Vehicle",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/vehicles/6",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "vehicles",
+                "6"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Vehicle",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "data",
+                      "value": "{\n  \"name\": \"Toyota Corolla Hybrid\",\n  \"plate_number\": \"DHA-2026-8841\",\n  \"category\": \"Sedan\",\n  \"daily_rate\": 2500\n}",
+                      "type": "text",
+                      "uuid": "a1bef44e-da51-40cb-8796-8bbb960b1419"
+                    },
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "b50ad46b-74a5-4e5d-9825-367900004ddf",
+                      "src": "/C:/Users/my-pc/Downloads/yuvraj-singh-tmAynVA_ihE-unsplash.jpg"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/vehicles/3",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "vehicles",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "460"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1cc-l3JHfWs9d0j9M9u4h7Gbfhh6BKw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 17:07:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Vehicle retrieved successfully\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Toyota Corolla Hybrid\",\n        \"plate_number\": \"DHA-2026-8841\",\n        \"category\": \"Sedan\",\n        \"daily_rate\": \"2500.00\",\n        \"photo_path\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1787245398/vehicle-rental-management/fimuy1uap3i-1787245550933-yuvraj-singh-tmaynvaihe-unsplash.jpg\",\n        \"deleted_at\": null,\n        \"created_at\": \"2026-08-20T16:59:46.077Z\",\n        \"updated_at\": \"2026-08-20T16:59:46.077Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Vehicle",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/vehicles/3",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "vehicles",
+                "3"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Vehicle",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/vehicles/3",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "vehicles",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "480"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1e0-Lc/4KCa/xnVx/1XGd/bltVnNJvM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 17:09:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Vehicle deleted successfully\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Toyota Corolla Hybrid\",\n        \"plate_number\": \"DHA-2026-8841\",\n        \"category\": \"Sedan\",\n        \"daily_rate\": \"2500.00\",\n        \"photo_path\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1787245398/vehicle-rental-management/fimuy1uap3i-1787245550933-yuvraj-singh-tmaynvaihe-unsplash.jpg\",\n        \"deleted_at\": \"2026-08-20T17:09:50.185Z\",\n        \"created_at\": \"2026-08-20T16:59:46.077Z\",\n        \"updated_at\": \"2026-08-20T16:59:46.077Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Vehicles",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/vehicles",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "vehicles"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "3",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "Sedan",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "toyota",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Vehicles",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/vehicles?page=1&limit=3&category=Sedan&search=toyota",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "vehicles"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "3"
+                    },
+                    {
+                      "key": "category",
+                      "value": "Sedan"
+                    },
+                    {
+                      "key": "search",
+                      "value": "toyota"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "505"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1f9-Cs50uPzONyq8sw4tPAV2I6l6WBM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 20:52:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Vehicles retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 3,\n        \"total\": 1,\n        \"totalPage\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"Toyota Camry\",\n            \"plate_number\": \"DHK-1234\",\n            \"category\": \"Sedan\",\n            \"daily_rate\": \"5000.00\",\n            \"photo_path\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1787248812/vehicle-rental-management/juvps8dksir-1787248964598-grahame-jenkins-p7tai9p7h-s-unsplash.jpg\",\n            \"deleted_at\": null,\n            \"created_at\": \"2026-08-20T18:00:14.451Z\",\n            \"updated_at\": \"2026-08-20T18:00:14.451Z\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rental",
+      "item": [
+        {
+          "name": "Get All Rentals",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rentals?status=completed&vehicle_id=7",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rentals"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "completed",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "7",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Rentals",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/rentals",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "rentals"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "919"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"397-k2kF/0za/LuIGtyu+IJYkIWOaDg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 21:20:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Rentals retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 3,\n        \"totalPage\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 3,\n            \"vehicle_id\": 8,\n            \"customer_name\": \"Sam Carter\",\n            \"customer_phone\": \"01711-000003\",\n            \"start_date\": \"2026-08-01\",\n            \"end_date\": \"2026-08-15\",\n            \"total_amount\": \"18000.00\",\n            \"status\": \"ongoing\",\n            \"created_at\": \"2026-08-20T21:00:40.608Z\",\n            \"updated_at\": \"2026-08-20T21:00:40.608Z\"\n        },\n        {\n            \"id\": 2,\n            \"vehicle_id\": 7,\n            \"customer_name\": \"Jordan Lee\",\n            \"customer_phone\": \"01711-000002\",\n            \"start_date\": \"2026-08-05\",\n            \"end_date\": \"2026-08-05\",\n            \"total_amount\": \"3500.00\",\n            \"status\": \"completed\",\n            \"created_at\": \"2026-08-20T21:00:40.608Z\",\n            \"updated_at\": \"2026-08-20T21:00:40.608Z\"\n        },\n        {\n            \"id\": 1,\n            \"vehicle_id\": 7,\n            \"customer_name\": \"Alex Morgan\",\n            \"customer_phone\": \"01711-000001\",\n            \"start_date\": \"2026-07-29\",\n            \"end_date\": \"2026-08-03\",\n            \"total_amount\": \"21000.00\",\n            \"status\": \"booked\",\n            \"created_at\": \"2026-08-20T21:00:40.608Z\",\n            \"updated_at\": \"2026-08-20T21:00:40.608Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Rental",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"vehicle_id\": 9,\r\n  \"customer_name\": \"Khalid Hasan\",\r\n  \"customer_phone\": \"01711-555555\",\r\n  \"start_date\": \"2026-08-10\",\r\n  \"end_date\": \"2026-08-13\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rentals",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rentals"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Rental",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"vehicle_id\": 9,\r\n  \"customer_name\": \"Khalid Hasan\",\r\n  \"customer_phone\": \"01711-555555\",\r\n  \"start_date\": \"2026-08-10\",\r\n  \"end_date\": \"2026-08-13\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/rentals",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "rentals"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "342"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"156-HHTa9Z5rJRUWtkEAT1MWEdQqnHc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 21:28:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"statusCode\": 201,\n    \"success\": true,\n    \"message\": \"Rental created successfully\",\n    \"data\": {\n        \"id\": 10,\n        \"vehicle_id\": 9,\n        \"customer_name\": \"Khalid Hasan\",\n        \"customer_phone\": \"01711-555555\",\n        \"start_date\": \"2026-08-10\",\n        \"end_date\": \"2026-08-13\",\n        \"total_amount\": \"32000.00\",\n        \"status\": \"booked\",\n        \"created_at\": \"2026-08-20T21:25:37.629Z\",\n        \"updated_at\": \"2026-08-20T21:25:37.629Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Rental",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rentals/3",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rentals",
+                "3"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Rental",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/rentals/3",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "rentals",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "342"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"156-5ezMy9XQ3lQ3ZG+mrn/kXUpDIAY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 21:31:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Rental retrieved successfully\",\n    \"data\": {\n        \"id\": 3,\n        \"vehicle_id\": 8,\n        \"customer_name\": \"Sam Carter\",\n        \"customer_phone\": \"01711-000003\",\n        \"start_date\": \"2026-08-01\",\n        \"end_date\": \"2026-08-15\",\n        \"total_amount\": \"18000.00\",\n        \"status\": \"ongoing\",\n        \"created_at\": \"2026-08-20T21:00:40.608Z\",\n        \"updated_at\": \"2026-08-20T21:00:40.608Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Rental",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rentals/10",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rentals",
+                "10"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Rental",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/rentals/10",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "rentals",
+                    "10"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "342"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"156-Xzu620h/PauS5kKQHrIqh82ucgo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 20 Aug 2026 21:32:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Rental deleted successfully\",\n    \"data\": {\n        \"id\": 10,\n        \"vehicle_id\": 9,\n        \"customer_name\": \"Khalid Hasan\",\n        \"customer_phone\": \"01711-555555\",\n        \"start_date\": \"2026-08-10\",\n        \"end_date\": \"2026-08-13\",\n        \"total_amount\": \"32000.00\",\n        \"status\": \"booked\",\n        \"created_at\": \"2026-08-20T21:25:37.629Z\",\n        \"updated_at\": \"2026-08-20T21:25:37.629Z\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Root Route",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}",
+          "host": [
+            "{{URL}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Root Route",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}",
+              "host": [
+                "{{URL}}"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "Content-Length",
+              "value": "146"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"92-5cdJDVxkJlfd5Ccnd0iDcymXzN0\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 20 Aug 2026 11:15:34 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"message\": \"Welcome to Vehicle Rental Management Server\",\n    \"environment\": \"development\",\n    \"uptime\": \"253.08 sec\",\n    \"timeStamp\": \"2026-08-20T11:15:34.608Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"admin@vrm.com\",\r\n    \"password\": \"Admin@123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/auth/login",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": ""
+    },
+    {
+      "key": "URL",
+      "value": ""
+    }
+  ]
+}
